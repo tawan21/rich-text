@@ -3,8 +3,15 @@ import Header from '../components/Header';
 import { IconButton } from '@mui/material';
 import Image from 'next/image'
 import Icon from '@mui/material/Icon';
+import { getSession, useSession } from 'next-auth/react'
+import Login from '../components/Login';
 
 export default function Home() {
+  const { data: session } = useSession();
+
+  if (!session)
+    return <Login />
+
   return (
     <div>
       <Head>
@@ -36,10 +43,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white px-10 md:px-0">
+      <section className="bg-white px-10">
         <div className="max-w-3xl mx-auto py-8 text-sm text-gray-700">
           <div className="flex items-center justify-between pb-5">
-            <h2 className="flex-grow font-semibold">My Documents</h2>
+            <h2 className="flex-grow font-medium">My Documents</h2>
             <p className="mr-12">Date created</p>
             <Icon>folder</Icon>
           </div>
