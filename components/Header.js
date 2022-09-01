@@ -1,8 +1,11 @@
 import React from 'react'
 import Icon from '@mui/material/Icon';
 import { IconButton } from '@mui/material';
+import { useSession, signOut } from 'next-auth/react'
 
 function Header() {
+    const { data: session } = useSession();
+
     return (
         <header className="sticky top-0 z-50 flex items-center p-3 shadow-md bg-white">
             <div className="flex justify-center">
@@ -25,9 +28,10 @@ function Header() {
                     <Icon>apps</Icon>
                 </IconButton>
                 <img
+                    onClick={signOut}
                     loading="lazy"
                     className="cursor-pointer h-10 w-10 rounded-full"
-                    src="https://visualpharm.com/assets/30/User-595b40b85ba036ed117da56f.svg"
+                    src={session?.user?.image}
                     alt=""
                 />
             </div>

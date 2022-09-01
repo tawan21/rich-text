@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet" />
       </Head>
-      <SessionProvider>
+      <SessionProvider session={pageProps.session}>
         <Component {...pageProps} />
       </SessionProvider>
     </>

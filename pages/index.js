@@ -5,9 +5,62 @@ import Image from 'next/image'
 import Icon from '@mui/material/Icon';
 import { getSession, useSession } from 'next-auth/react'
 import Login from '../components/Login';
+import {
+  Button,
+  Dialog,
+  DialogBody,
+  DialogFooter,
+} from "@material-tailwind/react";
+import { useState } from 'react';
 
 export default function Home() {
+
   const { data: session } = useSession();
+  const [showModal, setShowModal] = useState(false);
+  const [input, setInput] = useState("");
+
+  const toggleModal = () => setShowModal(!showModal)
+
+  const createDocument = () => {
+    if (!input) {
+      return;
+    }
+    
+    setInput("");
+    toggleModal();
+  }
+
+  const modal = (
+    <Dialog size="sm" open={showModal} handler={toggleModal}>
+      <DialogBody>
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          type="text"
+          className="outline-none w-full"
+          placeholder="Enter document name"
+          onKeyDown={(e) => e.key === 'Enter' && createDocument(db)}
+        />
+      </DialogBody>
+      <DialogFooter>
+        <Button
+          variant="text"
+          color="red"
+          onClick={toggleModal}
+          className="mr-1"
+          size="sm"
+        >
+          <span>Cancel</span>
+        </Button>
+        <Button
+          color="blue"
+          onClick={() => createDocument(db)} size="sm"
+        >
+          <span>Create</span>
+        </Button>
+      </DialogFooter>
+    </Dialog>
+  )
 
   if (!session)
     return <Login />
@@ -20,6 +73,7 @@ export default function Home() {
       </Head>
 
       <Header />
+      {modal}
 
       <section className="bg-gray-50 px-10 pb-10">
         <div className="max-w-3xl mx-auto">
@@ -32,13 +86,14 @@ export default function Home() {
             </IconButton>
           </div>
           <div>
-            <div className="relative h-52 w-40 border cursor-pointer hover:border-blue-100">
+            <div onClick={() => setShowModal(true)} className="relative h-52 w-40 border cursor-pointer hover:border-blue-100">
               <Image
                 src="https://links.papareact.com/pju"
                 layout="fill"
               />
             </div>
             <p className="ml-1 mt-2 font-semibold text-sm text-gray-700">Blank</p>
+
           </div>
         </div>
       </section>
@@ -55,4 +110,13 @@ export default function Home() {
 
     </div>
   )
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+  return {
+    props: {
+      session
+    }
+  }
 }

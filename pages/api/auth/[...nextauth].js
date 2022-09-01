@@ -2,7 +2,7 @@ import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import { FirestoreAdapter } from "@next-auth/firebase-adapter"
 import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore/lite';
+import { getFirestore } from 'firebase/firestore/lite'
 
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
