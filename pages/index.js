@@ -25,7 +25,9 @@ export default function Home() {
     if (!input) {
       return;
     }
-    
+
+
+
     setInput("");
     toggleModal();
   }
@@ -39,7 +41,7 @@ export default function Home() {
           type="text"
           className="outline-none w-full"
           placeholder="Enter document name"
-          onKeyDown={(e) => e.key === 'Enter' && createDocument(db)}
+          onKeyDown={(e) => e.key === 'Enter' && createDocument()}
         />
       </DialogBody>
       <DialogFooter>
@@ -54,7 +56,7 @@ export default function Home() {
         </Button>
         <Button
           color="blue"
-          onClick={() => createDocument(db)} size="sm"
+          onClick={() => createDocument()} size="sm"
         >
           <span>Create</span>
         </Button>
