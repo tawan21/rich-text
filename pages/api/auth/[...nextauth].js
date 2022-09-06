@@ -1,19 +1,14 @@
-import NextAuth from "next-auth"
-import GoogleProvider from "next-auth/providers/google"
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
-import clientPromise from "../../../lib/mongodb"
+import NextAuth from 'next-auth'
+import Providers from 'next-auth/providers'
+import { FirebaseAdapter } from '@next-auth/firebase-adapter'
+import { db } from '../../../firebase'
 
 export default NextAuth({
     providers: [
-        GoogleProvider({
+        Providers.Google({
             clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            authorization: {
-                params: {
-                    prompt: "consent"
-                }
-            }
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET
         })
     ],
-    adapter: MongoDBAdapter(clientPromise)
+    adapter: FirebaseAdapter(db)
 })

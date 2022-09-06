@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '@material-tailwind/react'
 import { Icon } from '@mui/material'
-import { signIn } from 'next-auth/react'
+import { signIn } from 'next-auth/client'
 
 function Login() {
     return (

@@ -1,10 +1,10 @@
 import React from 'react'
 import Icon from '@mui/material/Icon';
 import { IconButton } from '@mui/material';
-import { useSession, signOut } from 'next-auth/react'
+import { useSession, signOut } from 'next-auth/client'
 
 function Header() {
-    const { data: session } = useSession();
+    const [session] = useSession();
 
     return (
         <header className="sticky top-0 z-50 flex items-center p-3 shadow-md bg-white">

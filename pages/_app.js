@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import Head from 'next/head'
-import { SessionProvider } from 'next-auth/react'
+import { Provider } from 'next-auth/client'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -9,9 +9,9 @@ function MyApp({ Component, pageProps }) {
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet" />
       </Head>
-      <SessionProvider session={pageProps.session}>
+      <Provider session={pageProps.session}>
         <Component {...pageProps} />
-      </SessionProvider>
+      </Provider>
     </>
   )
 }

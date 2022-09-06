@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import { IconButton } from '@mui/material';
 import Image from 'next/image'
 import Icon from '@mui/material/Icon';
-import { getSession, useSession } from 'next-auth/react'
+import { getSession, useSession } from 'next-auth/client'
 import Login from '../components/Login';
 import {
   Button,
@@ -12,10 +12,12 @@ import {
   DialogFooter,
 } from "@material-tailwind/react";
 import { useState } from 'react';
+import { db } from '../firebase';
+import firebase from 'firebase/compat/app';
 
 export default function Home() {
 
-  const { data: session } = useSession();
+  const [session] = useSession();
   const [showModal, setShowModal] = useState(false);
   const [input, setInput] = useState("");
 
@@ -26,7 +28,13 @@ export default function Home() {
       return;
     }
 
-
+    db.collection("userDocs")
+      .doc(session.user.email)
+      .collection("docs")
+      .add({
+        fileName: input,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      });
 
     setInput("");
     toggleModal();
