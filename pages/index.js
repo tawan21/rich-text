@@ -14,12 +14,24 @@ import {
 import { useState } from 'react';
 import { db } from '../firebase';
 import firebase from 'firebase/compat/app';
+import { useCollectionOnce } from 'react-firebase-hooks/firestore';
+import DocumentRow from '../components/DocumentRow';
 
 export default function Home() {
 
   const [session] = useSession();
+  if (!session)
+    return <Login />
+
   const [showModal, setShowModal] = useState(false);
   const [input, setInput] = useState("");
+  const [snapshot] = useCollectionOnce(
+    db.
+      collection('userDocs')
+      .doc(session.user.email)
+      .collection('docs')
+      .orderBy('timestamp', 'desc')
+  );
 
   const toggleModal = () => setShowModal(!showModal)
 
@@ -72,9 +84,6 @@ export default function Home() {
     </Dialog>
   )
 
-  if (!session)
-    return <Login />
-
   return (
     <div>
       <Head>
@@ -115,9 +124,16 @@ export default function Home() {
             <p className="mr-12">Date created</p>
             <Icon>folder</Icon>
           </div>
+          {snapshot?.docs.map((doc) => (
+            <DocumentRow
+              key={doc.id}
+              id={doc.id}
+              fileName={doc.data().fileName}
+              date={doc.data().timestamp}
+            />
+          ))}
         </div>
       </section>
-
     </div>
   )
 }
