@@ -32,7 +32,7 @@ function Header() {
                     loading="lazy"
                     className="cursor-pointer h-10 w-10 rounded-full"
                     src={session?.user?.image}
-                    alt=""
+                    alt="avatar"
                 />
             </div>
         </header>
