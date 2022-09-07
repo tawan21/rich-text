@@ -98,11 +98,11 @@ export default function Home() {
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center  justify-between py-6">
             <h2 className="text-lg text-gray-800">Start a new document</h2>
-            <IconButton
+            {/* <IconButton
               className="border-0"
             >
               <Icon>more_vert</Icon>
-            </IconButton>
+            </IconButton> */}
           </div>
           <div>
             <div onClick={() => setShowModal(true)} className="relative h-52 w-40 border cursor-pointer hover:border-blue-100">
@@ -121,8 +121,7 @@ export default function Home() {
         <div className="max-w-3xl mx-auto py-8 text-sm text-gray-700">
           <div className="flex items-center justify-between pb-5">
             <h2 className="flex-grow font-medium">My Documents</h2>
-            <p className="mr-12">Date created</p>
-            <Icon>folder</Icon>
+            <p>Date created</p>
           </div>
           {snapshot?.docs.map((doc) => (
             <DocumentRow
