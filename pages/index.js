@@ -1,8 +1,6 @@
 import Head from 'next/head';
 import Header from '../components/Header';
-import { IconButton } from '@mui/material';
 import Image from 'next/image'
-import Icon from '@mui/material/Icon';
 import { getSession, useSession } from 'next-auth/client'
 import Login from '../components/Login';
 import {
@@ -60,16 +58,15 @@ export default function Home() {
           onChange={(e) => setInput(e.target.value)}
           type="text"
           className="outline-none w-full"
-          placeholder="Enter document name"
+          placeholder="Doc Name"
           onKeyDown={(e) => e.key === 'Enter' && createDocument()}
         />
       </DialogBody>
-      <DialogFooter>
+      <DialogFooter className="flex justify-evenly items-center">
         <Button
           variant="text"
           color="red"
           onClick={toggleModal}
-          className="mr-1"
           size="sm"
         >
           <span>Cancel</span>
@@ -97,17 +94,12 @@ export default function Home() {
       <section className="bg-gray-50 px-10 pb-10">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center  justify-between py-6">
-            <h2 className="text-lg text-gray-800">Start a new document</h2>
-            {/* <IconButton
-              className="border-0"
-            >
-              <Icon>more_vert</Icon>
-            </IconButton> */}
+            <h2 className="md:text-lg text-gray-800">Start a new document</h2>
           </div>
           <div>
-            <div onClick={() => setShowModal(true)} className="relative h-52 w-40 border cursor-pointer hover:border-blue-100">
+            <div onClick={() => setShowModal(true)} className="relative h-32 w-24 md:h-52 md:w-40 border cursor-pointer hover:shadow">
               <Image
-                src="https://links.papareact.com/pju"
+                src="/plus.webp"
                 layout="fill"
               />
             </div>

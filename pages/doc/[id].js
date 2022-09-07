@@ -29,12 +29,12 @@ export default function Doc() {
 
     return (
         <div>
-            <header className="flex justify-between items-center p-3 pb-1">
+            <header className="flex justify-between items-center p-3">
                 <span onClick={() => router.push('/')} className="cursor-pointer">
-                    <Icon className="text-blue-600 text-3xl md:text-5xl">description</Icon>
+                    <Icon className="text-blue-600 text-3xl md:text-4xl">description</Icon>
                 </span>
                 <div className="flex-grow px-2">
-                    <h1 className="font-extrabold">{snapshot?.data()?.fileName}</h1>
+                    <h1 className="text-xl text-gray-700 md:text-2xl font-bold">{snapshot?.data()?.fileName}</h1>
                 </div>
                 <img
                     onClick={signOut}

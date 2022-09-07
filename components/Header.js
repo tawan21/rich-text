@@ -1,6 +1,5 @@
 import React from 'react'
 import Icon from '@mui/material/Icon';
-import { IconButton } from '@mui/material';
 import { useSession, signOut } from 'next-auth/client'
 
 function Header() {
@@ -9,24 +8,11 @@ function Header() {
     return (
         <header className="sticky top-0 z-50 flex items-center p-3 shadow-md bg-white justify-between">
             <div className="flex justify-center items-center">
-                {/* <IconButton
-                    className="md:inline-flex border-0"
-                >
-                    <Icon>menu</Icon>
-                </IconButton> */}
-                <Icon className="text-blue-600 text-3xl md:text-5xl">description</Icon>
-                <h1 className="ml-2 text-gray-700 text-2xl">T-Docs</h1>
+                <Icon className="text-blue-600 hidden text-5xl md:inline-flex">description</Icon>
+                <h1 className="ml-2 text-gray-700 text-2xl font-bold">T-Docs</h1>
             </div>
-            {/* <div className="mx-2 md:mx-20 flex flex-grow items-center p-3 bg-gray-200 text-gray-600 rounded focus-within:shadow focus-within:text-gray-700">
-                <Icon className="text-gray-600">search</Icon>
-                <input type="text" placeholder="Search" className="flex-grow px-5 bg-transparent text-base outline-none" />
-            </div> */}
-            <div className="flex justify-center">
-                {/* <IconButton
-                    className="hidden md:inline-flex border-0"
-                >
-                    <Icon>apps</Icon>
-                </IconButton> */}
+            <div className="flex justify-center items-center">
+                <h1 className="hidden md:inline-flex text-gray-600 mr-2">{session.user.email}</h1>
                 <img
                     onClick={signOut}
                     loading="lazy"
