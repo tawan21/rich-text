@@ -12,7 +12,7 @@ function Header() {
                 <h1 className="ml-2 text-gray-700 text-2xl font-bold">T-Docs</h1>
             </div>
             <div className="flex justify-center items-center">
-                <h1 className="hidden md:inline-flex text-gray-600 mr-2">{session.user.email}</h1>
+                <h1 className="hidden md:inline-flex text-gray-600 mr-2">{session?.user?.email}</h1>
                 <img
                     onClick={signOut}
                     loading="lazy"

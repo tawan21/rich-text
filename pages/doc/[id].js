@@ -16,7 +16,7 @@ export default function Doc() {
     const [snapshot, loadingSnapshot] = useDocumentOnce(
         db.
             collection('userDocs')
-            .doc(session.user.email)
+            .doc(session?.user?.email)
             .collection('docs')
             .doc(id)
     );
