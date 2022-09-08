@@ -46,6 +46,7 @@ export default function Home() {
 
     setInput("");
     toggleModal();
+    window.location.reload();
   }
 
   const modal = (
