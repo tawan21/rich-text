@@ -10,8 +10,6 @@ import TextEditor from '../../components/TextEditor';
 
 export default function Doc() {
     const [session] = useSession();
-    if (!session)
-        return <Login />
 
     const router = useRouter();
     const { id } = router.query;
@@ -26,6 +24,9 @@ export default function Doc() {
     if (!loadingSnapshot && !snapshot?.data()?.fileName) {
         router.replace('/');
     }
+
+    if (!session)
+        return <Login />
 
     return (
         <div>
