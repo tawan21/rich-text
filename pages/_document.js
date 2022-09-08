@@ -8,7 +8,7 @@ export default function Document() {
                     rel="stylesheet" />
                 <link
                     rel="stylesheet"
-                    href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap"
+                    href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=optional"
                 />
             </Head>
             <body>

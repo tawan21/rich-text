@@ -112,7 +112,7 @@ export default function Home() {
       <section className="bg-white px-10">
         <div className="max-w-3xl mx-auto py-8 text-sm text-gray-700">
           <div className="flex items-center justify-between pb-5">
-            <h2 className="flex-grow font-medium">My Documents</h2>
+            <h2 className="flex-grow font-semibold">My Documents</h2>
             <p>Date created</p>
           </div>
           {snapshot?.docs.map((doc) => (
